@@ -1,104 +1,60 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
-# Personnel and leave data
+# Sample personnel data
 personnel_data = [
-    {
-        'Last Name': 'Kaur', 
-        'First Name': 'Anj', 
-        'Role': 'Supervisor', 
-        'Area': 'Area 1', 
-        'Date Qualified': '2024-07-15', 
-        'Target per Month': 5, 
-        'Start Date': '2024-07-01', 
-        'End Date': '2024-12-31', 
-        'Date Left': None
-    },
-    {
-        'Last Name': 'Doe', 
-        'First Name': 'John', 
-        'Role': 'Technician', 
-        'Area': 'Area 2', 
-        'Date Qualified': '2024-01-01', 
-        'Target per Month': 3, 
-        'Start Date': '2024-01-01', 
-        'End Date': '2024-06-30', 
-        'Date Left': None
-    }
+    {'First Name': 'John', 'Last Name': 'Doe', 'Role': 'Supervisor', 'Area': 'Area1', 
+     'Start Date': '2023-01-01', 'End Date': '2023-06-30'},
+    {'First Name': 'John', 'Last Name': 'Doe', 'Role': 'Manager', 'Area': 'Area1', 
+     'Start Date': '2023-07-01', 'End Date': None},  # Current role
+    {'First Name': 'Jane', 'Last Name': 'Smith', 'Role': 'Technician', 'Area': 'Area2', 
+     'Start Date': '2022-05-01', 'End Date': '2023-05-31'}
 ]
 
-leave_data = [
-    {
-        'Last Name': 'Kaur', 
-        'First Name': 'Anj', 
-        'Start Leave': '2024-07-01', 
-        'End Leave': '2024-07-15'
-    },
-    {
-        'Last Name': 'Doe', 
-        'First Name': 'John', 
-        'Start Leave': '2024-02-01', 
-        'End Leave': '2024-02-15'
-    }
+# Sample audit data
+audit_data = [
+    {'First Name': 'John', 'Last Name': 'Doe', 'Audit Date': '2023-05-15'},
+    {'First Name': 'John', 'Last Name': 'Doe', 'Audit Date': '2023-07-20'},
+    {'First Name': 'Jane', 'Last Name': 'Smith', 'Audit Date': '2023-05-15'},
+    {'First Name': 'Jane', 'Last Name': 'Smith', 'Audit Date': '2023-06-01'}
 ]
 
-# Helper functions
+# Convert date strings to datetime objects for easy comparison
 def parse_date(date_str):
-    return datetime.strptime(date_str, '%Y-%m-%d')
-
-def get_month_range(start_date, end_date):
-    """Generates a list of (year, month as string) tuples from start_date to end_date."""
-    date = start_date.replace(day=1)
-    end_date = end_date.replace(day=1)
-    months = []
-    while date <= end_date:
-        months.append((date.year, date.strftime('%b')))  # Format month as "Jan", "Feb", etc.
-        if date.month == 12:
-            date = date.replace(year=date.year + 1, month=1)
-        else:
-            date = date.replace(month=date.month + 1)
-    return months
-
-def is_on_leave(person, year, month, leave_data):
-    """Checks if the person is on leave for the given month and year."""
-    for leave in leave_data:
-        if leave['First Name'] == person['First Name'] and leave['Last Name'] == person['Last Name']:
-            leave_start = parse_date(leave['Start Leave'])
-            leave_end = parse_date(leave['End Leave'])
-            if leave_start.year == year and leave_start.strftime('%b') == month and leave_start <= leave_end:
-                return True
-    return False
-
-# Main logic to calculate monthly audit targets
-targeted_audits = []
+    return datetime.strptime(date_str, '%Y-%m-%d') if date_str else None
 
 for person in personnel_data:
-    start_date = parse_date(person['Start Date'])
-    end_date = parse_date(person['End Date']) if person['End Date'] else datetime.now()
-    date_qualified = parse_date(person['Date Qualified'])
-    target_per_month = person['Target per Month']
-    
-    # Skip if Date Qualified is beyond the role's End Date
-    if date_qualified > end_date:
-        continue
-    
-    # Start auditing from the month after Date Qualified
-    audit_start_date = date_qualified + timedelta(days=32)  # Skip to the next month
-    audit_start_date = audit_start_date.replace(day=1)
-    
-    # Generate months for the audit period, considering start, end, and left dates
-    months_in_role = get_month_range(max(start_date, audit_start_date), end_date)
-    
-    for year, month in months_in_role:
-        if not is_on_leave(person, year, month, leave_data):
-            targeted_audits.append({
-                'First Name': person['First Name'],
-                'Last Name': person['Last Name'],
-                'Role': person['Role'],
-                'Year': year,
-                'Month': month,
-                'Target Audits': target_per_month
-            })
+    person['Start Date'] = parse_date(person['Start Date'])
+    person['End Date'] = parse_date(person['End Date'])
 
-# Display the result
-for audit in targeted_audits:
+for audit in audit_data:
+    audit['Audit Date'] = parse_date(audit['Audit Date'])
+
+# Function to find the correct role for each audit record
+def assign_roles_to_audits(audits, personnel):
+    for audit in audits:
+        # Filter personnel data by matching names
+        matching_personnel = [
+            person for person in personnel
+            if person['First Name'] == audit['First Name'] and
+               person['Last Name'] == audit['Last Name']
+        ]
+        
+        # Find the correct role based on audit date
+        audit_role = None
+        for person in matching_personnel:
+            if person['Start Date'] <= audit['Audit Date'] and \
+               (person['End Date'] is None or person['End Date'] >= audit['Audit Date']):
+                audit_role = person['Role']
+                break  # Stop once the correct role is found
+
+        # Assign the role to the audit record
+        audit['Role'] = audit_role
+    
+    return audits
+
+# Assign roles to the audit data
+audit_data_with_roles = assign_roles_to_audits(audit_data, personnel_data)
+
+# Output the results
+for audit in audit_data_with_roles:
     print(audit)
