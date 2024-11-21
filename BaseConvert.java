@@ -17,3 +17,31 @@ DATE(
     ),
     1
 )
+# Sample dataset
+data = {
+    "Anjali": "Nick",
+    "Nick": "Chris",
+    "Chris": None
+}
+
+# Function to find the top-level manager for an employee
+def get_all_managers(employee, hierarchy):
+    managers = []
+    while employee and employee in hierarchy:
+        employee = hierarchy[employee]
+        if employee:
+            managers.append(employee)
+    return managers
+
+# Generate the desired output
+result = []
+for employee in data.keys():
+    all_managers = get_all_managers(employee, data)
+    for manager in all_managers:
+        result.append({"Manager": manager, "Employee": employee})
+
+# Print the results
+for relation in result:
+    print(relation)
+
+
