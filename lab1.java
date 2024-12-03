@@ -39,3 +39,87 @@ base10Num = scan.nextInt();
 }
 }
 }
+909206
+
+
+
+1. Maintenance and Repair (Already Have)
+Purpose: Track spending on equipment repairs, spare parts, preventive maintenance, and service contracts.
+Breakdown:
+Labor costs (internal/external)
+Parts/materials
+Service contracts (e.g., HVAC, instrumentation calibration)
+2. Capital Expenditure (CapEx) POs
+Purpose: Monitor investments in long-term assets like new equipment, facility expansions, or upgrades.
+Breakdown:
+Equipment purchases (e.g., bioreactors, chromatography systems)
+Construction and renovation costs
+Installation and commissioning costs
+3. Operational Expenditure (OpEx) POs
+Purpose: Track day-to-day operational costs outside of maintenance.
+Breakdown:
+Consumables (e.g., filters, culture media, reagents)
+Utilities (e.g., water, electricity, gas)
+Cleaning supplies and chemicals
+4. Quality and Compliance-Related POs
+Purpose: Ensure tracking of spending on quality assurance and regulatory compliance activities.
+Breakdown:
+Audits and inspections
+Calibration and validation services
+Laboratory consumables and testing kits
+5. Facility Management POs
+Purpose: Capture costs associated with the upkeep of the manufacturing site.
+Breakdown:
+Security services
+Waste management (e.g., biohazard disposal)
+Landscaping and custodial services
+6. IT and Software POs
+Purpose: Include expenses related to the technology infrastructure.
+Breakdown:
+Enterprise software licenses (e.g., ERP, LIMS, MES)
+Equipment (e.g., servers, laptops)
+Cloud and data storage costs
+7. R&D POs (If Applicable)
+Purpose: Track spending on research and development within the facility.
+Breakdown:
+Lab equipment
+Pilot plant costs
+R&D-specific consumables
+8. Third-Party Services POs
+Purpose: Capture costs related to outsourcing and professional services.
+Breakdown:
+Consulting services
+Contract manufacturing
+Legal and regulatory services
+9. Safety and Training POs
+Purpose: Track spending on workplace safety and employee training.
+Breakdown:
+PPE (Personal Protective Equipment)
+Safety equipment maintenance (e.g., eyewash stations, fire extinguishers)
+Training programs and certifications
+10. Contingency/Emergency Spending POs
+Purpose: Highlight unplanned expenditures.
+Breakdown:
+Emergency repairs
+Supply chain disruptions (e.g., expedited shipping)
+How to Structure the Dashboard:
+Pages to Include:
+
+Overview:
+Total spend by category (CapEx, OpEx, etc.)
+Trends over time
+Maintenance Spending:
+Breakdown by equipment, work order type
+Planned vs. unplanned maintenance
+Operational Expenses:
+Consumables by type
+Utility costs trend
+CapEx Projects:
+Project budgets vs. actuals
+Spending by phase (procurement, installation, etc.)
+Quality & Compliance:
+Costs associated with audits, lab supplies
+Savings Opportunities:
+Areas of over-budgeting
+Spend by vendor (to identify consolidation opportunities)
+
