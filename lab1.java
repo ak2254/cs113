@@ -4,6 +4,30 @@ It generates a list of rows where, for each person, a row is created for each mo
 - The number of audits completed.  
 - The number of audits targeted.  
 
+Additionally, the function calculates qualification status totals and percentages for the past three years, broken down by month, year, and roles.  
+
+Args:  
+    personal_dataset (list[dict]): A list of dictionaries containing personal data for individuals.  
+    leaves_dataset (list[dict]): A list of dictionaries containing leave data for individuals.  
+    audits_dataset (list[dict]): A list of dictionaries containing audit data.  
+
+Returns:  
+    tuple: A tuple containing three lists of dictionaries:  
+        1. A list of all completed and targeted audits for each person by month and year.  
+        2. A list of audits that meet the criteria for being classified as "completed."  
+        3. A list of qualification statuses, including totals and percentages for each year, month, and role for the past three years.  
+"""
+
+
+
+
+
+""
+This Prefect task function processes three datasets: a personal dataset, a leaves dataset, and an audits dataset.  
+It generates a list of rows where, for each person, a row is created for each month and year, containing:  
+- The number of audits completed.  
+- The number of audits targeted.  
+
 Args:  
     personal_dataset (list[dict]): A list of dictionaries containing personal data for individuals.  
     leaves_dataset (list[dict]): A list of dictionaries containing leave data for individuals.  
