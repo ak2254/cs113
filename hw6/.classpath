@@ -1,6 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-
+
+
+
+
+Smart Batch Investigation Assistant - Complete Project Explanation
+Let me break this down in simple terms:
+The Problem We're Solving
+In bio manufacturing, when a batch fails (doesn't meet quality specifications), it's a big problem:
+
+Each failed batch costs $500K-$1M+ in lost product
+Quality engineers must investigate to find out why it failed
+Current investigations take 2-3 weeks of manual work
+Engineers export data from multiple systems, create charts, compare to old batches
+This delays corrective actions, meaning the same problem might cause more failures
+
+Real example: Batch B2847 fails purity test (89% instead of 95% required). Quality engineer spends 3 weeks digging through 14 days of temperature, pH, and other process data trying to figure out what went wrong.
+What Our AI System Does
+Our system automates the investigation process using artificial intelligence:
+Step 1: Automatic Data Collection
+
+Connects to your PI System (process historian) where all manufacturing data is stored
+Pulls 14 days of batch data: temperature, pH, dissolved oxygen, feed rates, etc.
+Gets quality test results
+
+Step 2: Smart Analysis
+
+AI analyzes thousands of data points looking for patterns
+Compares failed batch to 100+ historical batches
+Identifies which process parameters correlated with the failure
+Finds similar failures from the past
+
+Step 3: Root Cause Identification
+
+AI determines: "Temperature excursion on Day 5 (39.2°C for 3.2 hours) caused protein degradation"
+Shows statistical evidence: "87% correlation between this temperature spike and purity loss"
+Finds precedent: "Batches B2801 and B2823 had identical pattern and same failure"
+
+Step 4: Automated Report Generation
+
+Creates complete investigation report in regulatory format
+Suggests corrective actions based on what worked before
+Recommends preventive actions to stop it happening again
+All in 3 hours instead of 3 weeks
+
+How It Works Technically
+Architecture:
+Your Existing Systems → Our AI → Business Value
+
+PI Historian (you have this) 
+    ↓ PI Web API
+Your AI Investigation System
+    ↓ Analysis + Reports
+CAPA System / Quality Team
+The AI Components:
+1. Correlation Engine
+
+Uses machine learning (Random Forest, XGBoost)
+Finds which process parameters affected quality
+Calculates statistical significance
+
+2. Pattern Matcher
+
+Compares current batch to all historical batches
+Uses similarity algorithms to find matches
+Identifies recurring failure modes
+
+3. Report Generator
+
+Takes AI findings and creates readable reports
+Formats for regulatory compliance
+Suggests evidence-based corrective actions
+
+Why This Project Will Succeed
+You Already Have the Foundation:
+✅ PI Web API Access - The hardest part (data infrastructure) already exists
+✅ Data Engineering Skills - You know how to build data pipelines
+✅ Rich Historical Data - Years of batch data in PI System
+✅ Clear Business Need - Quality team desperately needs faster investigations
+Proven Technology:
+
+Similar systems at Genentech, Novartis, Pfizer show 70%+ time savings
+Machine learning for pattern recognition is mature technology
+Not experimental - practical application of proven AI
+
+Business Impact
+Time Savings:
+Current: 3 weeks per investigation × 50 investigations/year = 150 weeks of work
+With AI: 3 hours per investigation × 50 investigations/year = 7.5 weeks of work
+
+Result: Quality engineers get 142 weeks back for prevention work
+Cost Savings:
+Investigation Cost Reduction:
+$16,000/investigation → $2,300/investigation = $685K annual savings
+
+Failure Prevention:
+Faster root cause = faster fixes = fewer repeat failures
+Estimated: 3 fewer batch failures/year = $2.25M savings
+
+Total: $2.9M annual benefit
+Quality Improvements:
+
+Consistent investigation quality (not dependent on which engineer)
+Faster CAPA closure (regulatory advantage)
+Better preventive actions (based on historical patterns)
+Institutional knowledge captured (doesn't leave when experts retire)
+
+Implementation Approach
+Phase 1: Proof of Concept (Month 1-2)
+
+Build basic system using PI Web API
+Analyze 20 historical batches
+Demonstrate correlation analysis works
+Show one complete investigation example
+Investment: $50K, Low Risk
+
+Phase 2: MVP Production (Month 3-4)
+
+Web interface for quality team
+Integration with PI for all batches
+Automated report generation
+User training and rollout
+Investment: Additional $100K
+
+Phase 3: Advanced Features (Month 5-6)
+
+LIMS integration for quality data
+MES integration for batch context
+Predictive failure prevention
+Mobile access
+Investment: Additional $150K
+
+Total First Year: $300K investment, $2.9M return = 967% ROI
+Why This Is Low Risk
+Technical Risk: LOW
+
+Proven AI/ML techniques
+Existing data infrastructure (PI)
+Your data engineering expertise
+Can start small and scale
+
+Business Risk: LOW
+
+Doesn't disrupt current operations
+Quality team keeps current process during pilot
+Can stop after Phase 1 if not working
+Fast proof of value (60 days)
+
+Adoption Risk: LOW
+
+Solves real pain point quality team feels daily
+Makes their job easier, not harder
+Provides better results faster
+Training is minimal (web interface)
+
+What Makes This Different
+Not another dashboard - PI ProcessBook already shows data
+Not generic AI - Purpose-built for batch investigation workflow
+Not just analytics - Complete investigation to CAPA integration
+Not replacing people - Augmenting expert knowledge with AI speed
+The Ask
+For Proof of Concept:
+
+Budget: $50K for 2-month pilot
+Resources: 1 quality engineer part-time, IT support for PI access
+Scope: Analyze 20 historical batches, prove correlation analysis
+Decision Point: If it works, proceed to Phase 2. If not, stop with minimal loss.
+
+Success Criteria:
+
+AI identifies root causes matching known investigations: >80% accuracy
+Investigation time reduced: From 3 weeks to <1 day
+Quality team satisfaction: >85% would use vs. manual method
+Business case validated: Clear path to ROI
+
+Next Steps
+
+Week 1: Approve POC, assemble team, identify pilot batches
+Week 2-4: Build data pipeline from PI Web API
+Week 5-6: Develop correlation analysis engine
+Week 7: Run analysis on 20 historical batches
+Week 8: Present results, decide on Phase 2
+
+Summary
+The Problem: Batch failure investigations take 3 weeks of manual work, delaying corrective actions and costing millions in repeated failures.
+The Solution: AI system that automatically analyzes PI process data, identifies root causes with statistical evidence, finds similar historical cases, and generates complete investigation reports in 3 hours.
+The Opportunity: You have PI Web API access and data engineering skills - the hard parts are already in place. A 2-month, $50K pilot can prove this works with real data from your facility.
+The Impact: $2.9M annual savings, 95% faster investigations, better quality outcomes, and happier quality engineers who can focus on prevention instead of endless manual analysis.
+The Risk: Low. Start small, prove value, then scale. If it doesn't work in 60 days, stop with minimal investment.
